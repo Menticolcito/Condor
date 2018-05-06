@@ -10,6 +10,7 @@ FROM    (
         user_role, 
         (
         SELECT  cd_role_type, 
+                COUNT(id_user) AS Total 
         FROM user_role 
         WHERE in_status = 1 
         GROUP BY cd_role_type
