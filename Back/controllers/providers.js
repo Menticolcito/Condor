@@ -50,3 +50,41 @@ function getOneProvider(req, res){
         res.status(200).send({ provider })
     })
 }
+
+//Put one Provider
+function updateProvider(req, res){
+    let id = req.params.providerId
+    let content = req.body
+    Provider.findByIdAndUpdate(id, content, (err, newProvider) => {
+        if(err) 
+            return res.status(500).send({ message: "Request Error"})
+        if(!provider) 
+            return res.status(404).send({ message: "Provider Not Found"})
+
+        res.status(200).send({ provider: newProvider })
+    })
+}
+
+//Delete provider
+function deleteProvider(req, res){
+    let id = req.params.providerId
+
+    Provider.findById(id, (err, provider) => {
+        if(err) 
+            return res.status(500).send({ message: "Request Error"})
+        provider.remove(err => {
+            if(err) 
+                return res.status(500).send({ message: "Delete Error"})
+            
+            res.status(200).send({ message: "Provider Deleted" })
+        })
+    })
+}
+
+module.exports = {
+    createProvider,
+    getAllProviders,
+    getOneProvider,
+    updateProvider,
+    deleteProvider,
+}
