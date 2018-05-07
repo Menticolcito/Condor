@@ -14,7 +14,6 @@ function createProvider(req, res){
     provider.projectedStartDate = req.body.projectedStartDate
     provider.providerType = req.body.providerType
     provider.staffStatus = req.body.staffStatus
-    provider.specialties = req.body.specialties
     provider.status = req.body.status
     provider.updatedBy = req.body.updatedBy
 

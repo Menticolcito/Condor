@@ -22,3 +22,15 @@ mongoose.connect(dbConfig.url)
         process.exit()
     }
 )
+
+//Using Router to manage CRUD
+const providersRouter = require("./routes/providers")
+const specialtiesRouter = require("./routes/specialties")
+
+app.use(providersRouter)
+app.use(specialtiesRouter)
+
+//Run the server
+app.listen(8080, () => {
+    console.log("Magic at 8080");
+})

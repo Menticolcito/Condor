@@ -12,10 +12,6 @@ const schema = mongoose.Schema({
     projectedStartDate: Date,
     providerType: String,
     staffStatus: String,
-    specialties: {
-        type: Schema.ObjectId, 
-        reference: "Specialities" 
-    },
     status: String,
     updatedBy: Number
 })
