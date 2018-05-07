@@ -5,7 +5,7 @@ const Provider = require('../models/providers')
 function createProvider(req, res){
     let provider = new Provider()
     provider.assignedTo = req.body.assignedTo
-    provider.createdBy = req.body.createBy
+    provider.createdBy = req.body.createdBy
     provider.email = req.body.email
     provider.employerId = req.body.employerId
     provider.firstName = req.body.firstName
@@ -16,7 +16,7 @@ function createProvider(req, res){
     provider.staffStatus = req.body.staffStatus
     provider.specialties = req.body.specialties
     provider.status = req.body.status
-    provider.updatedBy = req.body.updateBy
+    provider.updatedBy = req.body.updatedBy
 
     provider.save((err, createdProvider) => {
         if(err) 
@@ -58,8 +58,6 @@ function updateProvider(req, res){
     Provider.findByIdAndUpdate(id, content, (err, newProvider) => {
         if(err) 
             return res.status(500).send({ message: "Request Error"})
-        if(!provider) 
-            return res.status(404).send({ message: "Provider Not Found"})
 
         res.status(200).send({ provider: newProvider })
     })
