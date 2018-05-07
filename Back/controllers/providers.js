@@ -2,7 +2,7 @@
 const Provider = require('../models/providers')
 
 //Post new Provider
-function createProvider (req, res){
+function createProvider(req, res){
     let provider = new Provider()
     provider.assignedTo = req.body.assignedTo
     provider.createdBy = req.body.createBy
@@ -23,5 +23,30 @@ function createProvider (req, res){
             return res.status(500).send({ message: "DB Error"})
         
         res.status(200).send( {provider: createdProvider })
+    })
+}
+
+//Get all Providers
+function getAllProviders(req, res){
+    Provider.find({}, (err, providers) => {
+        if(err) 
+            return res.status(500).send({ message: "Request Error"})
+        if(!providers) 
+            return res.status(404).send({ message: "Provider Not Found"})
+
+        res.send(200, { providers })
+    })
+}
+
+//Get one Provider
+function getOneProvider(req, res){
+    let id = req.params.providerId
+    Provider.findById(id, (err, provider) => {
+        if(err) 
+            return res.status(500).send({ message: "Request Error"})
+        if(!provider) 
+            return res.status(404).send({ message: "Provider Not Found"})
+
+        res.status(200).send({ provider })
     })
 }
